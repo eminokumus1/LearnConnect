@@ -3,25 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    tools:context=".signup.SignupActivity">
 
     <TextView
-        android:id="@+id/welcomeText"
+        android:id="@+id/signupText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="20dp"
-        android:text="@string/welcome"
-        android:textColor="@color/red"
-        android:textStyle="bold"
-        android:textSize="@dimen/headline_text_size"
+        android:text="@string/sign_up"
         android:textAlignment="center"
+        android:textColor="@color/red"
+        android:textSize="@dimen/headline_text_size"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailField"
@@ -32,15 +30,14 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:hint="@string/email"
-        app:layout_constraintTop_toBottomOf="@id/welcomeText"
+        app:layout_constraintTop_toBottomOf="@id/signupText"
         app:startIconDrawable="@drawable/ic_email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            tools:text="abcabc@gmail.com" />
+            android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,77 +61,45 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
 
+
     </com.google.android.material.textfield.TextInputLayout>
 
-
-
-    <CheckBox
-        android:id="@+id/rememberCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/confirmPasswordField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="@string/remember_me"
-        android:textColor="@color/red"
-        android:textSize="12sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordField" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/forgetPasswordButton"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@android:color/transparent"
-        android:text="@string/forget_password"
-        android:textAllCaps="false"
-        android:textColor="@color/red"
-        android:textSize="12sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordField" />
+        android:hint="@string/confirm_password"
+        app:endIconMode="password_toggle"
+        app:errorIconDrawable="@null"
+        app:layout_constraintTop_toBottomOf="@id/passwordField"
+        app:startIconDrawable="@drawable/ic_lock">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/confirmPasswordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/loginButton"
+        android:id="@+id/signupButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="200dp"
         android:background="@drawable/bg_rounded"
-        android:text="@string/login"
+        android:text="@string/sign_up"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <TextView
-        android:id="@+id/haveAccText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="50dp"
-        android:text="@string/don_t_have_account"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginButton"
-        tools:layout_editor_absoluteY="640dp" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/signupChoiceButton"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:background="@android:color/transparent"
-        android:text="@string/sign_up"
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textColor="@color/red"
-        app:layout_constraintStart_toEndOf="@id/haveAccText"
-        app:layout_constraintTop_toBottomOf="@id/loginButton" />
+        app:layout_constraintRight_toRightOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
