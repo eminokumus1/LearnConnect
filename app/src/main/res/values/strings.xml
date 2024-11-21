@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">LearnConnect</string>
+
+    <string name="welcome">Welcome</string>
+    <string name="sign_up">Sign up</string>
+    <string name="email_phone_number">Email/Phone Number</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="login">Login</string>
+    <string name="forget_password">Forget password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="don_t_have_account">Don\'t have account</string>
+    <string name="email">Email</string>
+</resources>
