@@ -1,5 +1,6 @@
 package com.eminokumus.learnconnect.signup
 
+import android.support.v4.os.IResultReceiver._Parcel
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -27,5 +28,6 @@ class SignupViewModel(): ViewModel() {
     fun checkConfirmPassword(confirmPassword: String, userPassword: String){
         _isPasswordConfirm.value = userPassword == confirmPassword && confirmPassword.isNotEmpty()
     }
+
 
 }
