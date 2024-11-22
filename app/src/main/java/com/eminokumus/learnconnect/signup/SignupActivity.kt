@@ -3,6 +3,7 @@ package com.eminokumus.learnconnect.signup
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
@@ -10,22 +11,35 @@ import androidx.core.widget.doAfterTextChanged
 import com.eminokumus.learnconnect.MyApplication
 import com.eminokumus.learnconnect.ThemeModes
 import com.eminokumus.learnconnect.databinding.ActivitySignupBinding
+import com.eminokumus.learnconnect.valueobject.User
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.database
 
 class SignupActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
     private lateinit var viewModel: SignupViewModel
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var dbFirebase: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel = SignupViewModel()
+
         checkThemeSwitchIfInLightMode()
 
-
-        viewModel = SignupViewModel()
         observeViewModel()
         checkFields()
+
+        auth = Firebase.auth
+
+        dbFirebase = Firebase.database.getReference("users")
 
         setOnClickListeners()
     }
@@ -40,14 +54,34 @@ class SignupActivity : AppCompatActivity() {
     private fun setSignupButtonOnClickListener() {
         binding.signupButton.setOnClickListener {
             if (isSignupAllowed()) {
-                Toast.makeText(this, "Sign up successful", Toast.LENGTH_SHORT).show()
-                // TODO: Save user to firebase
+                createUserForFirebaseAuth()
             } else {
                 Toast.makeText(this, "Check the informations you entered", Toast.LENGTH_SHORT)
                     .show()
             }
         }
 
+    }
+
+    private fun createUserForFirebaseAuth(){
+        auth.createUserWithEmailAndPassword(
+            binding.emailEditText.text.toString(),
+            binding.passwordEditText.text.toString()
+        ).addOnCompleteListener {
+            if (it.isSuccessful) {
+                auth.currentUser?.let { it1 -> addUserToFirebaseDatabase(it1.uid, binding.emailEditText.text.toString()) }
+                auth.signOut()
+                Toast.makeText(this, "Signup completed", Toast.LENGTH_SHORT).show()
+            } else {
+                Log.e("error", it.exception.toString())
+                Toast.makeText(this, "This email is already in use", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
+
+    private fun addUserToFirebaseDatabase(userId: String, userEmail: String) {
+        dbFirebase.child(userId).child("userData").setValue(User(userId, userEmail))
     }
 
     private fun setBackButtonOnClickListener() {
