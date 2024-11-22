@@ -10,11 +10,9 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
-import com.eminokumus.learnconnect.MainActivity
+import com.eminokumus.learnconnect.main.MainActivity
 import com.eminokumus.learnconnect.MyApplication
-import com.eminokumus.learnconnect.R
 import com.eminokumus.learnconnect.ThemeModes
 import com.eminokumus.learnconnect.databinding.ActivityLoginBinding
 import com.eminokumus.learnconnect.signup.SignupActivity
