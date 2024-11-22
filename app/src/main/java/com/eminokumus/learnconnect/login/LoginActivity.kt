@@ -4,29 +4,46 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
+import com.eminokumus.learnconnect.MainActivity
 import com.eminokumus.learnconnect.MyApplication
+import com.eminokumus.learnconnect.R
 import com.eminokumus.learnconnect.ThemeModes
 import com.eminokumus.learnconnect.databinding.ActivityLoginBinding
 import com.eminokumus.learnconnect.signup.SignupActivity
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
+
+    private lateinit var auth: FirebaseAuth
+
+    private val handler = Handler(Looper.getMainLooper())
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel = LoginViewModel()
         checkThemeSwitchIfInLightMode()
 
-        viewModel = LoginViewModel()
+        auth = Firebase.auth
+
         checkFields()
         observeViewModel()
+
 
         setOnClickListeners()
     }
@@ -50,10 +67,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun observeEmail() {
         viewModel.isEmailValid.observe(this) { isValid ->
-            if (binding.emailField.isFocused){
-                showErrorIfEmailNotValid()
-            }
-            if (isValid && binding.emailField.isFocused) {
+            if (isValid) {
                 binding.emailField.error = null
             } else {
                 binding.emailField.error = "Wrong email format"
@@ -67,25 +81,7 @@ class LoginActivity : AppCompatActivity() {
         }
         binding.passwordEditText.doAfterTextChanged {
             viewModel.checkPasswordFormat(binding.passwordEditText.text.toString())
-//            showErrorIfPasswordNotValid()
         }
-    }
-
-    private fun showErrorIfEmailNotValid(){
-        if (viewModel.isEmailValid.value == true){
-            binding.emailField.error = null
-        } else {
-            binding.emailField.error = "Wrong email format"
-        }
-
-    }
-    private fun showErrorIfPasswordNotValid(){
-        if (viewModel.isPasswordValid.value == true){
-            binding.passwordField.error = null
-        } else {
-            binding.passwordField.error = "Wrong email format"
-        }
-
     }
 
     private fun setOnClickListeners(){
@@ -116,14 +112,33 @@ class LoginActivity : AppCompatActivity() {
     private fun setLoginButtonOnClickListener(){
         binding.loginButton.setOnClickListener {
             if (isLoginAllowed()){
-                Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
-                // TODO: Check if the user is in firebase
+                checkFirebaseAuthentication()
             } else {
-                Toast.makeText(this, "Wrong email or password", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Wrong email or password format", Toast.LENGTH_SHORT)
                     .show()
             }
         }
 
+    }
+
+    private fun checkFirebaseAuthentication() {
+        auth.signInWithEmailAndPassword(
+            binding.emailEditText.text.toString(),
+            binding.passwordEditText.text.toString()
+        ).addOnCompleteListener {
+            if (it.isSuccessful){
+                Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                handler.postDelayed({
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }, 1000)
+
+            }else{
+                Toast.makeText(this, "Wrong email or password", Toast.LENGTH_SHORT).show()
+                Log.e("error", it.exception.toString())
+            }
+        }
     }
 
     private fun isLoginAllowed(): Boolean {

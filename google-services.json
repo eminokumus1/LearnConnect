@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "654520182413",
+    "project_id": "learn-connect-app",
+    "storage_bucket": "learn-connect-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654520182413:android:1b7e580458b756232b24c4",
+        "android_client_info": {
+          "package_name": "com.eminokumus.learnconnect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPi7TNEEZ_UqRZQplt3WG7FaQM31D_9fY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
