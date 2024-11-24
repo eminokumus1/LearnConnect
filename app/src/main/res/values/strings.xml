@@ -14,4 +14,11 @@
     <string name="search">Search</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="my_courses">My Courses</string>
+    <string name="profile">Profile</string>
+    <string name="course_image">Course Image</string>
+    <string name="join_course">Join Course</string>
+    <string name="total_courses">Total Courses :</string>
+    <string name="category">Category:</string>
 </resources>

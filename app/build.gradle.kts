@@ -3,6 +3,9 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.gms.google-services")
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
+
 }
 
 android {
@@ -59,4 +62,9 @@ dependencies {
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.4")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.4")
+
+    implementation ("com.google.dagger:dagger:2.51.1")
+    annotationProcessor ("com.google.dagger:dagger-compiler:2.51.1")
+    kapt("com.google.dagger:dagger-compiler:2.51.1")
+
 }
