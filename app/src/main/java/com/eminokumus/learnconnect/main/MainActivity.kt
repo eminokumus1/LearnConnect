@@ -20,11 +20,15 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 import com.google.firebase.database.getValue
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     lateinit var appComponent: AppComponent
+
+    @Inject
+    lateinit var viewModel: MainViewModel
 
 
 
@@ -37,7 +41,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        observeViewModel()
 
+        println((application as MyApplication).currentUser)
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(binding.myNavHostFragment.id) as NavHostFragment
@@ -63,5 +69,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun observeViewModel() {
+        viewModel.currentUser.observe(this){user->
+            if(user != null){
+                (application as MyApplication).currentUser = user
+            }
 
+        }
+    }
 }

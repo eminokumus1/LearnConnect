@@ -21,5 +21,6 @@ class MyApplication: Application() {
 
     var currentThemeMode = ThemeModes.LIGHT
 
+    var currentUser: User? = null
 
 }
