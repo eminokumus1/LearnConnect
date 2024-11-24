@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:context=".profile.ProfileFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.eminokumus.learnconnect.profile.ProfileViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/themeModeSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:checked="true"
+            android:thumb="@drawable/thumb_theme_switch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:track="@drawable/track_theme_switch" />
+
+        <TextView
+            android:id="@+id/emailText"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/bg_borderline_box"
+            android:padding="4dp"
+            android:textAlignment="center"
+            android:text="@{viewModel.currentUserData.component2()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/themeModeSwitch"
+            tools:text="abc@gmail.com" />
+
+        <TextView
+            android:id="@+id/totalCoursesText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/total_courses"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/emailText" />
+
+        <TextView
+            android:id="@+id/numberOfTotalCoursesText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/bg_borderline_box"
+            android:padding="4dp"
+            android:textSize="16sp"
+            android:text="@{Integer.valueOf(viewModel.currentUserData.component3().size()).toString()}"
+            app:layout_constraintBottom_toBottomOf="@id/totalCoursesText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/totalCoursesText"
+            app:layout_constraintTop_toTopOf="@id/totalCoursesText"
+            tools:text="5" />
+
+        <Button
+            android:id="@+id/goToFavoritesButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/go_to_favorite_courses"
+            app:layout_constraintTop_toBottomOf="@id/totalCoursesText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"
+            android:textSize="18sp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
