@@ -43,9 +43,9 @@ class CourseDetailFragment : Fragment() {
         binding.lifecycleOwner = this
 
         viewModel.setCurrentUserData(user)
-        println("args Course: ${args.course}")
         viewModel.setCourse(args.course)
-        println("viewmodel course: ${viewModel.course.value}")
+        viewModel.checkIfInMyCourses()
+        viewModel.checkIfInMyFavorites()
 
         return binding.root
     }
@@ -63,7 +63,6 @@ class CourseDetailFragment : Fragment() {
     private fun observeViewModel(){
         observeIsInMyCourses()
         observeIsInFavorites()
-        observeCurrentUserData()
     }
 
     private fun observeIsInMyCourses(){
@@ -75,13 +74,6 @@ class CourseDetailFragment : Fragment() {
     private fun observeIsInFavorites(){
         viewModel.isInFavorites.observe(viewLifecycleOwner){isInFavorites->
             setAddFavoritesFabIcon(isInFavorites)
-        }
-    }
-    private fun observeCurrentUserData(){
-        viewModel.currentUserData.observe(viewLifecycleOwner){updatedUser->
-            if (updatedUser != null) {
-                updateCurrentUserInApplication(updatedUser)
-            }
         }
     }
 
@@ -112,7 +104,6 @@ class CourseDetailFragment : Fragment() {
     }
 
     private fun setImageWithGlide(){
-        println("imageUrl: ${viewModel.course.value?.imageUrl}, imageView: ${binding.courseImage}")
         Glide.with(binding.root)
             .load(viewModel.course.value?.imageUrl)
             .into(binding.courseImage)
@@ -142,39 +133,16 @@ class CourseDetailFragment : Fragment() {
         binding.addFavoritesFab.setOnClickListener {
             if(viewModel.isInFavorites.value == true){
                 viewModel.setIsInFavorites(false)
+                viewModel.removeCourseToFavorites()
             }else{
                 viewModel.setIsInFavorites(true)
+                viewModel.addCourseToFavorites()
             }
         }
 
     }
 
-    private fun updateCurrentUserInApplication(user: User){
-        ((activity as MainActivity).application as MyApplication).currentUser = user
-    }
 
 
-//
-//    private fun checkIfInMyCourses(courseId: String){
-//        val course = userData.myCourses.find{
-//            it.id == courseId
-//        }
-//
-//        course?.let{
-//            binding.button.text = "Drop course"
-//        }
-//
-//    }
-//
-//
-//    private fun checkIfInFavoriteCourses(courseId: String){
-//        val course = userData.favoriteCourses.find{
-//            it.id == courseId
-//        }
-//
-//        course?.let{
-//            binding.favoriteFab.icon = R.drawable.ic_favorite_filled
-//        }
-//
-//    }
+
 }
