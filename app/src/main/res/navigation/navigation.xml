@@ -35,7 +35,11 @@
         android:id="@+id/courseDetailFragment"
         android:name="com.eminokumus.learnconnect.coursedetail.CourseDetailFragment"
         android:label="fragment_course_detail"
-        tools:layout="@layout/fragment_course_detail" />
+        tools:layout="@layout/fragment_course_detail" >
+        <argument
+            android:name="course"
+            app:argType="com.eminokumus.learnconnect.valueobject.Course" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.eminokumus.learnconnect.profile.ProfileFragment"

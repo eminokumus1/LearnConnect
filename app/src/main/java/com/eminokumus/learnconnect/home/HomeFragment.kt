@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.eminokumus.learnconnect.databinding.FragmentHomeBinding
 import com.eminokumus.learnconnect.main.MainActivity
 import com.eminokumus.learnconnect.valueobject.Course
@@ -20,7 +21,7 @@ class HomeFragment : Fragment() {
     private val homeAdapter = HomeAdapter().also {
         it.onCourseItemClickListener = object : OnCourseItemClickListener{
             override fun onItemClick(course: Course) {
-                // TODO: Go to course detail screen
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCourseDetailFragment(course))
             }
 
         }

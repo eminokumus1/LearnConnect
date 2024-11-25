@@ -22,4 +22,5 @@
     <string name="total_courses">Total Courses :</string>
     <string name="category">Category:</string>
     <string name="go_to_favorite_courses">Go to Favorite Courses</string>
+    <string name="drop_course">Drop Course</string>
 </resources>
