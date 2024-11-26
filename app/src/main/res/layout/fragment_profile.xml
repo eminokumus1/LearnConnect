@@ -6,6 +6,7 @@
     tools:context=".profile.ProfileFragment">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.eminokumus.learnconnect.profile.ProfileViewModel" />
@@ -35,8 +36,9 @@
             android:layout_margin="20dp"
             android:background="@drawable/bg_borderline_box"
             android:padding="4dp"
-            android:textAlignment="center"
             android:text="@{viewModel.currentUserData.component2()}"
+            android:textAlignment="center"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/themeModeSwitch"
@@ -60,8 +62,11 @@
             android:layout_margin="20dp"
             android:background="@drawable/bg_borderline_box"
             android:padding="4dp"
-            android:textSize="16sp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:text="@{Integer.valueOf(viewModel.currentUserData.component3().size()).toString()}"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@id/totalCoursesText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/totalCoursesText"
@@ -72,12 +77,13 @@
             android:id="@+id/goToFavoritesButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/go_to_favorite_courses"
-            app:layout_constraintTop_toBottomOf="@id/totalCoursesText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="40dp"
-            android:textSize="18sp"/>
+            android:text="@string/go_to_favorite_courses"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/totalCoursesText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

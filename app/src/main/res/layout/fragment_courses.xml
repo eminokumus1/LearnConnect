@@ -15,6 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="16sp"
         android:inputType="text"
+        android:textColorHint="@color/dark_grey"
         android:background="@drawable/bg_borderline_box"
         style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
         android:hint="@string/search"

@@ -6,14 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.findNavController
 import com.eminokumus.learnconnect.Constants
 import com.eminokumus.learnconnect.MyApplication
-import com.eminokumus.learnconnect.R
+import com.eminokumus.learnconnect.ThemeModes
 import com.eminokumus.learnconnect.databinding.FragmentProfileBinding
 import com.eminokumus.learnconnect.main.MainActivity
+import com.eminokumus.learnconnect.utils.myApplication
 import com.eminokumus.learnconnect.valueobject.User
-import com.google.firebase.auth.FirebaseUser
 import javax.inject.Inject
 
 
@@ -48,13 +49,47 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkThemeSwitchIfInLightMode()
+        setOnClickListeners()
+    }
 
+
+
+    override fun onResume() {
+        super.onResume()
+        checkThemeSwitchIfInLightMode()
+    }
+
+    private fun setOnClickListeners() {
         setGoToFavoritesButtonOnClickListener()
+        setThemeModeSwitchOnClickListener()
     }
 
     private fun setGoToFavoritesButtonOnClickListener(){
         binding.goToFavoritesButton.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToCoursesFragment(Constants.FAVORITES_SCREEN))
+        }
+    }
+
+    private fun setThemeModeSwitchOnClickListener() {
+        binding.themeModeSwitch.setOnClickListener {
+            if (binding.themeModeSwitch.isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                (activity as MainActivity).myApplication().currentThemeMode = ThemeModes.LIGHT
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                (activity as MainActivity).myApplication().currentThemeMode = ThemeModes.DARK
+
+            }
+        }
+    }
+
+    private fun checkThemeSwitchIfInLightMode() {
+        val currentThemeMode = (activity as MainActivity).myApplication().currentThemeMode
+        if (currentThemeMode == ThemeModes.LIGHT) {
+            binding.themeModeSwitch.isChecked = true
+        }else if (currentThemeMode == ThemeModes.DARK){
+            binding.themeModeSwitch.isChecked = false
         }
     }
 
