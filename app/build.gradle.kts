@@ -64,6 +64,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.8.4")
 
     implementation ("com.google.dagger:dagger:2.51.1")
+    implementation("com.google.dagger:dagger-android-support:2.51.1")
     annotationProcessor ("com.google.dagger:dagger-compiler:2.51.1")
     kapt("com.google.dagger:dagger-compiler:2.51.1")
 

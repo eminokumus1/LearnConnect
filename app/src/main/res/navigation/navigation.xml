@@ -3,34 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/coursesFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.eminokumus.learnconnect.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_myCoursesFragment"
-            app:destination="@id/myCoursesFragment" />
+        android:id="@+id/coursesFragment"
+        android:name="com.eminokumus.learnconnect.courses.CoursesFragment"
+        android:label="All Courses"
+        tools:layout="@layout/fragment_courses" >
         <action
             android:id="@+id/action_homeFragment_to_courseDetailFragment"
             app:destination="@id/courseDetailFragment" />
         <action
             android:id="@+id/action_homeFragment_to_profileFragment2"
             app:destination="@id/profileFragment" />
+        <argument
+            android:name="screenType"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_coursesFragment_to_myCoursesFragment"
+            app:destination="@id/myCoursesFragment" />
     </fragment>
     <fragment
         android:id="@+id/myCoursesFragment"
-        android:name="com.eminokumus.learnconnect.mycourses.MyCoursesFragment"
-        android:label="MyCoursesFragment" >
+        android:name="com.eminokumus.learnconnect.courses.CoursesFragment"
+        android:label="My Courses"
+        tools:layout="@layout/fragment_courses" >
         <action
-            android:id="@+id/action_myCoursesFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_homeFragment_to_courseDetailFragment"
+            app:destination="@id/courseDetailFragment" />
         <action
-            android:id="@+id/action_myCoursesFragment_to_profileFragment2"
+            android:id="@+id/action_homeFragment_to_profileFragment2"
             app:destination="@id/profileFragment" />
+        <argument
+            android:name="screenType"
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
+
     <fragment
         android:id="@+id/courseDetailFragment"
         android:name="com.eminokumus.learnconnect.coursedetail.CourseDetailFragment"
@@ -46,10 +56,7 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_profileFragment2_to_myCoursesFragment"
-            app:destination="@id/myCoursesFragment" />
-        <action
             android:id="@+id/action_profileFragment2_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/coursesFragment" />
     </fragment>
 </navigation>

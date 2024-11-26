@@ -1,11 +1,11 @@
-package com.eminokumus.learnconnect.home
+package com.eminokumus.learnconnect.courses
 
 import androidx.lifecycle.MutableLiveData
 import com.eminokumus.learnconnect.valueobject.Course
 import com.google.firebase.database.FirebaseDatabase
 import javax.inject.Inject
 
-class HomeRepository @Inject constructor() {
+class CoursesRepository @Inject constructor() {
 
     private val coursesListMutableLiveData = MutableLiveData<MutableList<Course>>()
 

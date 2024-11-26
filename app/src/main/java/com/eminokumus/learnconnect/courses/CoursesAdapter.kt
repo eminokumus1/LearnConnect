@@ -1,9 +1,9 @@
-package com.eminokumus.learnconnect.home
+package com.eminokumus.learnconnect.courses
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.eminokumus.learnconnect.databinding.ItemHomeBinding
+import com.eminokumus.learnconnect.databinding.ItemCourseBinding
 import com.eminokumus.learnconnect.valueobject.Course
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
@@ -16,7 +16,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     var onCourseItemClickListener: OnCourseItemClickListener? = null
 
-    class HomeViewHolder(private val binding: ItemHomeBinding) :
+    class HomeViewHolder(private val binding: ItemCourseBinding) :
         RecyclerView.ViewHolder(binding.root){
             fun bind(item: Course, onCourseItemClickListener: OnCourseItemClickListener?){
                 binding.courseNameText.text = item.title
@@ -28,7 +28,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        val binding = ItemHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemCourseBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HomeViewHolder(binding)
     }
 
