@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.eminokumus.learnconnect.Constants
 import com.eminokumus.learnconnect.MyApplication
 import com.eminokumus.learnconnect.R
 import com.eminokumus.learnconnect.databinding.FragmentProfileBinding
@@ -47,14 +49,14 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        viewModel.currentUserData.observe(viewLifecycleOwner){user->
-//            binding.emailText.text = user?.email
-//            binding.numberOfTotalCoursesText.text = user?.myCourses?.size.toString()
-//        }
-
+        setGoToFavoritesButtonOnClickListener()
     }
 
-
+    private fun setGoToFavoritesButtonOnClickListener(){
+        binding.goToFavoritesButton.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToCoursesFragment(Constants.FAVORITES_SCREEN))
+        }
+    }
 
 
 }

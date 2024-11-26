@@ -35,9 +35,7 @@ class CoursesFragment : Fragment() {
         it.onCourseItemClickListener = object : OnCourseItemClickListener {
             override fun onItemClick(course: Course) {
                 findNavController().navigate(
-                    CoursesFragmentDirections.actionHomeFragmentToCourseDetailFragment(
-                        course
-                    )
+                    CoursesFragmentDirections.actionCoursesFragmentToCourseDetailFragment(course)
                 )
             }
 

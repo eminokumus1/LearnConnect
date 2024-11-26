@@ -9,43 +9,46 @@
         android:id="@+id/coursesFragment"
         android:name="com.eminokumus.learnconnect.courses.CoursesFragment"
         android:label="All Courses"
-        tools:layout="@layout/fragment_courses" >
-        <action
-            android:id="@+id/action_homeFragment_to_courseDetailFragment"
-            app:destination="@id/courseDetailFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_profileFragment2"
-            app:destination="@id/profileFragment" />
+        tools:layout="@layout/fragment_courses">
         <argument
             android:name="screenType"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
         <action
             android:id="@+id/action_coursesFragment_to_myCoursesFragment"
             app:destination="@id/myCoursesFragment" />
+        <action
+            android:id="@+id/action_coursesFragment_to_courseDetailFragment"
+            app:destination="@id/courseDetailFragment" />
+        <action
+            android:id="@+id/action_coursesFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/myCoursesFragment"
         android:name="com.eminokumus.learnconnect.courses.CoursesFragment"
         android:label="My Courses"
-        tools:layout="@layout/fragment_courses" >
-        <action
-            android:id="@+id/action_homeFragment_to_courseDetailFragment"
-            app:destination="@id/courseDetailFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_profileFragment2"
-            app:destination="@id/profileFragment" />
+        tools:layout="@layout/fragment_courses">
         <argument
             android:name="screenType"
-            app:argType="integer"
-            android:defaultValue="1" />
+            android:defaultValue="1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_coursesFragment_to_coursesFragment"
+            app:destination="@id/coursesFragment" />
+        <action
+            android:id="@+id/action_coursesFragment_to_courseDetailFragment"
+            app:destination="@id/courseDetailFragment" />
+        <action
+            android:id="@+id/action_coursesFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/courseDetailFragment"
         android:name="com.eminokumus.learnconnect.coursedetail.CourseDetailFragment"
         android:label="fragment_course_detail"
-        tools:layout="@layout/fragment_course_detail" >
+        tools:layout="@layout/fragment_course_detail">
         <argument
             android:name="course"
             app:argType="com.eminokumus.learnconnect.valueobject.Course" />
@@ -54,9 +57,12 @@
         android:id="@+id/profileFragment"
         android:name="com.eminokumus.learnconnect.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
-            android:id="@+id/action_profileFragment2_to_homeFragment"
+            android:id="@+id/action_profileFragment_to_myCoursesFragment"
+            app:destination="@id/myCoursesFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_coursesFragment"
             app:destination="@id/coursesFragment" />
     </fragment>
 </navigation>
