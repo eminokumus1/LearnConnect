@@ -52,6 +52,9 @@
         <argument
             android:name="course"
             app:argType="com.eminokumus.learnconnect.valueobject.Course" />
+        <action
+            android:id="@+id/action_courseDetailFragment_to_lessonsFragment"
+            app:destination="@id/lessonsFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -64,5 +67,14 @@
         <action
             android:id="@+id/action_profileFragment_to_coursesFragment"
             app:destination="@id/coursesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lessonsFragment"
+        android:name="com.eminokumus.learnconnect.lessons.LessonsFragment"
+        android:label="fragment_lessons"
+        tools:layout="@layout/fragment_lessons" >
+        <argument
+            android:name="course"
+            app:argType="com.eminokumus.learnconnect.valueobject.Course" />
     </fragment>
 </navigation>
