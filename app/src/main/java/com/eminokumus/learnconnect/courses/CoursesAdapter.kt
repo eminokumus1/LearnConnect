@@ -8,7 +8,7 @@ import com.eminokumus.learnconnect.valueobject.Course
 
 class CourseAdapter : RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {
 
-    var coursesList = listOf<Course>()
+    var coursesList = mutableListOf<Course>()
         set(value) {
             field = value
             notifyDataSetChanged()

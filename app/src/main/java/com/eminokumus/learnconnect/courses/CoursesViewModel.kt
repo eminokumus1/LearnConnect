@@ -40,6 +40,7 @@ class CoursesViewModel @Inject constructor(private val repository: CoursesReposi
     }
 
     fun searchInItemList(searchKeyword: String) {
+        _searchList.value = mutableListOf()
         val list = mutableListOf<Course>()
         itemList.value?.let {
             for (item in it) {
@@ -52,4 +53,19 @@ class CoursesViewModel @Inject constructor(private val repository: CoursesReposi
             _searchList.value = list
         }
     }
+
+    fun filterItemListBasedOnCategory(category: String){
+        val list = mutableListOf<Course>()
+
+        itemList.value?.let {
+            for (item in it) {
+                if (item.category!!.contains(category, ignoreCase = true)) {
+                    list.add(item)
+                }
+            }
+        }
+            _searchList.value = list
+    }
+
+
 }

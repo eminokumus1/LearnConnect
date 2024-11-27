@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.eminokumus.learnconnect.valueobject.User
 import javax.inject.Inject
 
-class ProfileViewModel@Inject constructor(): ViewModel() {
+class ProfileViewModel@Inject constructor(private val repository: ProfileRepository): ViewModel() {
 
     private val _currentUserData = MutableLiveData<User?>()
     val currentUserData: LiveData<User?> get() = _currentUserData
@@ -15,5 +15,9 @@ class ProfileViewModel@Inject constructor(): ViewModel() {
 
     fun setCurrentUserData(user: User?){
         _currentUserData.postValue(user)
+    }
+
+    fun signOut(){
+        repository.signOut()
     }
 }

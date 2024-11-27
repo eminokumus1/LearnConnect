@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.eminokumus.learnconnect.R
 import com.eminokumus.learnconnect.databinding.FragmentCoursesBinding
 import com.eminokumus.learnconnect.main.MainActivity
 import com.eminokumus.learnconnect.utils.myApplication
@@ -65,6 +68,8 @@ class CoursesFragment : Fragment() {
 
         observeViewModel()
         watchSearchEditText()
+        setFilterSpinner()
+        setFilterButtonOnClickListener()
 
         binding.coursesRecycler.adapter = coursesAdapter
     }
@@ -110,5 +115,47 @@ class CoursesFragment : Fragment() {
             viewModel.searchInItemList(binding.searchEditText.text.toString())
         }
     }
+
+    private fun setFilterSpinner() {
+        val adapter = createArrayAdapterForFilterSpinner()
+        binding.filterSpinner.adapter = adapter
+        binding.filterSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedCategory = parent?.getItemAtPosition(position).toString()
+                if (selectedCategory != "Clear All Filter"){
+                    viewModel.filterItemListBasedOnCategory(selectedCategory)
+                }else{
+                    viewModel.filterItemListBasedOnCategory("")
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+        }
+
+
+    }
+
+    private fun createArrayAdapterForFilterSpinner(): ArrayAdapter<CharSequence> {
+        return ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.filter_options,
+            R.layout.item_filter_spinner
+        )
+    }
+
+    private fun setFilterButtonOnClickListener() {
+        binding.filterImageButton.setOnClickListener {
+            binding.filterSpinner.performClick()
+
+        }
+    }
+
 
 }

@@ -27,4 +27,11 @@
     <string name="lessons">Lessons</string>
     <string name="lesson">Lesson</string>
     <string name="lesson_1">Lesson 1</string>
+
+    <string-array name="filter_options">
+        <item>Mobile App Development</item>
+        <item>Artificial Intelligence</item>
+        <item>Backend</item>
+        <item>Clear All Filter</item>
+    </string-array>
 </resources>
