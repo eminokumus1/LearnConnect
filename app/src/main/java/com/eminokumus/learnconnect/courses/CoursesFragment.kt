@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -63,6 +64,7 @@ class CoursesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         observeViewModel()
+        watchSearchEditText()
 
         binding.coursesRecycler.adapter = coursesAdapter
     }
@@ -71,6 +73,7 @@ class CoursesFragment : Fragment() {
         observeUser()
         observeCoursesListLiveData()
         observeItemList()
+        observeSearchList()
     }
 
     private fun observeUser() {
@@ -87,12 +90,25 @@ class CoursesFragment : Fragment() {
 
     private fun observeItemList() {
         viewModel.itemList.observe(viewLifecycleOwner) { itemList ->
-            if (itemList != null){
+            if (itemList != null) {
                 coursesAdapter.coursesList = itemList
 
             }
         }
     }
 
+    private fun observeSearchList() {
+        viewModel.searchList.observe(viewLifecycleOwner) { searchList ->
+            if (searchList != null) {
+                coursesAdapter.coursesList = searchList
+            }
+        }
+    }
+
+    private fun watchSearchEditText() {
+        binding.searchEditText.doAfterTextChanged {
+            viewModel.searchInItemList(binding.searchEditText.text.toString())
+        }
+    }
 
 }

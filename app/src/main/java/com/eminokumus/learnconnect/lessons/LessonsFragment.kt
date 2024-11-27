@@ -115,21 +115,12 @@ class LessonsFragment : Fragment() {
             getLessonPosition()
             player.setMediaItem(MediaItem.fromUri(newLessonVideoUrl))
             player.prepare()
-            println("current position: ${currentLessonPosition}")
             player.seekTo(currentLessonPosition)
             player.playWhenReady = true
         }
     }
 
-//    private fun observeCurrentLessonPosition(){
-//        viewModel.currentLessonPosition.observe(viewLifecycleOwner){
-//            if (it != null){
-//                currentLessonPosition = it
-//                println("observe current lesson position: $currentLessonPosition")
-//
-//            }
-//        }
-//    }
+
 
 
     private fun saveLessonPosition(currentPosition: Long) {
@@ -140,7 +131,6 @@ class LessonsFragment : Fragment() {
             .toString()
         lifecycleScope.launch {
             viewModel.saveLessonVideoPosition(lessonPositionKey, currentPosition)
-            println(" current position saved $lessonPositionKey, $currentPosition")
         }
     }
 
@@ -156,7 +146,6 @@ class LessonsFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.getLessonVideoPosition(lessonPositionKey).collect{
                 currentLessonPosition = it ?: 0
-                println(" current position inside scope: $lessonPositionKey, $currentLessonPosition")
             }
         }
     }

@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".lessons.LessonsFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <TextView
         android:id="@+id/lessonText"
         android:layout_width="match_parent"
@@ -25,8 +29,10 @@
     <androidx.media3.ui.PlayerView
         android:id="@+id/lessonPlayer"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:layout_margin="10dp"
+        app:fullscreen_enter_icon="@drawable/ic_fullscreen"
+        app:fullscreen_exit_icon="@drawable/ic_fullscreen_exit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lessonText" />

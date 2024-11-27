@@ -19,7 +19,7 @@ class CourseAdapter : RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {
     class CourseViewHolder(private val binding: ItemCourseBinding) :
         RecyclerView.ViewHolder(binding.root){
             fun bind(item: Course, onCourseItemClickListener: OnCourseItemClickListener?){
-                binding.lessonNameText.text = item.title
+                binding.courseNameText.text = item.title
 
                 binding.root.setOnClickListener {
                     onCourseItemClickListener?.onItemClick(item)
