@@ -31,7 +31,7 @@ android {
             )
         }
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
         viewBinding = true
     }
@@ -63,16 +63,21 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.4")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.4")
 
-    implementation ("com.google.dagger:dagger:2.51.1")
+    implementation("com.google.dagger:dagger:2.51.1")
     implementation("com.google.dagger:dagger-android-support:2.51.1")
-    annotationProcessor ("com.google.dagger:dagger-compiler:2.51.1")
+    annotationProcessor("com.google.dagger:dagger-compiler:2.51.1")
     kapt("com.google.dagger:dagger-compiler:2.51.1")
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
-    implementation ("androidx.media3:media3-exoplayer:1.4.1")
-    implementation ("androidx.media3:media3-ui:1.4.1")
-    implementation ("androidx.media3:media3-common:1.4.1")
+    implementation("androidx.media3:media3-exoplayer:1.4.1")
+    implementation("androidx.media3:media3-ui:1.4.1")
+    implementation("androidx.media3:media3-common:1.4.1")
+
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
 
 
 }

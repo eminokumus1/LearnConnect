@@ -3,7 +3,6 @@ package com.eminokumus.learnconnect.lessons
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.eminokumus.learnconnect.R
 import com.eminokumus.learnconnect.databinding.ItemLessonBinding
 import java.lang.StringBuilder
 
@@ -24,11 +23,12 @@ class LessonsAdapter : RecyclerView.Adapter<LessonsAdapter.LessonsViewHolder>() 
             itemPosition: Int,
             onLessonItemClickListener: OnLessonItemClickListener?
         ) {
-            binding.courseNameText.text =
-                StringBuilder().append("Lesson ").append("${itemPosition + 1}").toString()
+            val lessonName = StringBuilder().append("Lesson ").append("${itemPosition + 1}").toString()
+            binding.lessonNameText.text =
+                lessonName
 
             binding.root.setOnClickListener {
-                onLessonItemClickListener?.onItemClick(item)
+                onLessonItemClickListener?.onItemClick(item, lessonName)
             }
         }
     }
@@ -49,5 +49,5 @@ class LessonsAdapter : RecyclerView.Adapter<LessonsAdapter.LessonsViewHolder>() 
 }
 
 interface OnLessonItemClickListener {
-    fun onItemClick(lessonVideoUrl: String)
+    fun onItemClick(lessonVideoUrl: String, lessonName: String)
 }
