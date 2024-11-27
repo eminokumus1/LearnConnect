@@ -23,4 +23,7 @@
     <string name="category">Category:</string>
     <string name="go_to_favorite_courses">Go to Favorite Courses</string>
     <string name="drop_course">Drop Course</string>
+    <string name="go_to_lessons">Go to Lessons</string>
+    <string name="lessons">Lessons</string>
+    <string name="lesson">Lesson</string>
 </resources>

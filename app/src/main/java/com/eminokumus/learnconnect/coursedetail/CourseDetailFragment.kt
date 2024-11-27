@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.eminokumus.learnconnect.MyApplication
@@ -80,8 +81,10 @@ class CourseDetailFragment : Fragment() {
     private fun setButtonVisibilities(isInMyCourses: Boolean){
         if (isInMyCourses){
             showDropCourseButton()
+            showLessonsButton()
         }else{
             showJoinCourseButton()
+            hideLessonsButton()
         }
     }
 
@@ -93,6 +96,13 @@ class CourseDetailFragment : Fragment() {
     private fun showDropCourseButton() {
         binding.dropCourseButton.visibility = View.VISIBLE
         binding.joinCourseButton.visibility = View.GONE
+    }
+
+    private fun showLessonsButton(){
+        binding.lessonsButton.visibility = View.VISIBLE
+    }
+    private fun hideLessonsButton(){
+        binding.lessonsButton.visibility = View.GONE
     }
 
     private fun setAddFavoritesFabIcon(isInFavorites: Boolean){
@@ -113,6 +123,7 @@ class CourseDetailFragment : Fragment() {
         setJoinButtonOnClickListener()
         setDropButtonOnClickListener()
         setAddFavoritesFabOnClickListener()
+        setLessonsButtonOnClickListener()
     }
 
     private fun setJoinButtonOnClickListener() {
@@ -139,7 +150,14 @@ class CourseDetailFragment : Fragment() {
                 viewModel.addCourseToFavorites()
             }
         }
+    }
 
+    private fun setLessonsButtonOnClickListener(){
+        binding.lessonsButton.setOnClickListener {
+            viewModel.course.value?.let {
+                findNavController().navigate(CourseDetailFragmentDirections.actionCourseDetailFragmentToLessonsFragment(it))
+            }
+        }
     }
 
 

@@ -13,6 +13,11 @@ data class Course(
     val lessonVideos: List<String>? = null
 ): Parcelable
 
+//@Parcelize
+//data class LessonVideos(
+//    val lessonVideosList: List<String>,
+//): Parcelable
+
 
 //data class Evaluation(
 //    val user: User,

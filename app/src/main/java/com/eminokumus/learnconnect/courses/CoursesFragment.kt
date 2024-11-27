@@ -31,7 +31,7 @@ class CoursesFragment : Fragment() {
     private var user: User? = null
 
 
-    private val coursesAdapter = HomeAdapter().also {
+    private val coursesAdapter = CourseAdapter().also {
         it.onCourseItemClickListener = object : OnCourseItemClickListener {
             override fun onItemClick(course: Course) {
                 findNavController().navigate(

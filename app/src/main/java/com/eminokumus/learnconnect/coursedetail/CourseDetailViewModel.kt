@@ -42,7 +42,6 @@ class CourseDetailViewModel@Inject constructor(): ViewModel() {
     }
 
      fun checkIfInMyCourses(){
-        println("currentUserData: ${currentUserData.value}")
         _isInMyCourses.value = currentUserData.value?.myCourses?.contains(course.value) ?: false
     }
 
@@ -60,8 +59,11 @@ class CourseDetailViewModel@Inject constructor(): ViewModel() {
 
     fun addCourseToMyCourses(){
         _course.value?.let {
-            _currentUserData.value?.myCourses?.add(it)
-            updateFirebaseUser()
+            if(isInMyCourses.value == false){
+                _currentUserData.value?.myCourses?.add(it)
+                updateFirebaseUser()
+            }
+
         }
     }
     fun removeCourseFromMyCourses(){

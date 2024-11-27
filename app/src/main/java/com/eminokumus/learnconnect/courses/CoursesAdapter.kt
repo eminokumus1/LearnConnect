@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.eminokumus.learnconnect.databinding.ItemCourseBinding
 import com.eminokumus.learnconnect.valueobject.Course
 
-class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+class CourseAdapter : RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {
 
     var coursesList = listOf<Course>()
         set(value) {
@@ -16,7 +16,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     var onCourseItemClickListener: OnCourseItemClickListener? = null
 
-    class HomeViewHolder(private val binding: ItemCourseBinding) :
+    class CourseViewHolder(private val binding: ItemCourseBinding) :
         RecyclerView.ViewHolder(binding.root){
             fun bind(item: Course, onCourseItemClickListener: OnCourseItemClickListener?){
                 binding.courseNameText.text = item.title
@@ -27,16 +27,16 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
             }
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseViewHolder {
         val binding = ItemCourseBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return HomeViewHolder(binding)
+        return CourseViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
         return coursesList.size
     }
 
-    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
         val courseItem = coursesList[position]
         holder.bind(courseItem, onCourseItemClickListener)
     }

@@ -49,7 +49,8 @@ class MainActivity : AppCompatActivity() {
     ) {
         bottombar.setOnItemSelectedListener { item ->
             if (item.itemId != bottombar.selectedItemId) {
-                navController.popBackStack(bottombar.selectedItemId, false, saveState = false)
+                navController.popBackStack(bottombar.selectedItemId, false
+                    , saveState = false)
                 navController.navigate(item.itemId)
             } else if (item.itemId == bottombar.selectedItemId) {
                 navController.popBackStack(item.itemId, false)

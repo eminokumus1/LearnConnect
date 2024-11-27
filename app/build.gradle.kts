@@ -60,8 +60,8 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
     implementation("com.google.firebase:firebase-database")
 
-    implementation("androidx.navigation:navigation-fragment-ktx:2.8.3")
-    implementation("androidx.navigation:navigation-ui-ktx:2.8.3")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.4")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.4")
 
     implementation ("com.google.dagger:dagger:2.51.1")
     implementation("com.google.dagger:dagger-android-support:2.51.1")
@@ -69,6 +69,10 @@ dependencies {
     kapt("com.google.dagger:dagger-compiler:2.51.1")
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    implementation ("androidx.media3:media3-exoplayer:1.4.1")
+    implementation ("androidx.media3:media3-ui:1.4.1")
+    implementation ("androidx.media3:media3-common:1.4.1")
 
 
 }
