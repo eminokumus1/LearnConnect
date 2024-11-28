@@ -2,15 +2,21 @@
 
 ## Installation
 1- Clone this repository:    git clone https://github.com/yourusername/your-repo-name.git
+
 2- Open the project in Android Studio.
+
 3- Sync the project with Gradle files.
+
 4- Run the application on an emulator or physical device.
 
 If you encounter any issues during installation, try the following steps:
 
 1- Delete the .idea folder and Gradle files.
+
 2- In Android Studio, go to File > Invalidate Caches / Restart.
+
 3- After that, restart the IDE and rebuild the project.
+
 This process often resolves common setup and dependency issues.
 
 ## Requirements
