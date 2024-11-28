@@ -41,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
         checkThemeSwitchIfInLightMode()
 
         auth = Firebase.auth
+        checkLoggedInUser()
 
         checkFields()
         observeViewModel()
@@ -194,6 +195,13 @@ class LoginActivity : AppCompatActivity() {
         binding.dimView.visibility = View.GONE
     }
 
+    private fun checkLoggedInUser(){
+        if (auth.currentUser != null){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
 
 
 }
