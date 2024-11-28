@@ -22,7 +22,7 @@ User Registration and Authentication:
 Profile Screen:
   -  After successfully logging in, users can access their Profile Screen via a Bottom Navigation Bar, providing an intuitive and seamless user experience.
 
-### 2. 2. Course Management
+### 2. Course Management
 After logging in, the main screen displays a list of available courses. When a course is selected, the user is navigated to the Course Details Screen, where they can enroll in the course.
 Enrolled Courses:
   -  Once enrolled, users can access their registered courses from the My Courses Screen at any time. If a user wishes to leave a course, they can use the Drop Course button, which becomes active after enrollment.
