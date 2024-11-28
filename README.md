@@ -117,10 +117,10 @@ Data Isolation:
   -  Data Binding was used in combination with LiveData to directly bind the data to the UI components. This eliminates the need for manual UI updates and simplifies the code. With data binding, changes in LiveData automatically trigger UI updates, reducing the boilerplate code and improving the maintainability of the app.
 
 
-### Demo Video
+## Demo Video
 
-https://github.com/user-attachments/assets/392cf816-a259-442b-a3c7-6bce5fab429f
 
+https://github.com/user-attachments/assets/b82c7edb-97f8-4e34-89d7-f8cab83e6808
 
 
 
