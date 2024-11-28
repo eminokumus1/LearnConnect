@@ -42,6 +42,9 @@ Users can toggle between Light Mode and Dark Mode using a Switch available on th
 Profile Screen Integration:
   -  After logging in, the application theme can also be changed via a Switch located on the Profile Screen, providing users with flexibility to update their preferences at any time.
 
+### 5. Unit Test
+Unit tests were written for the ViewModel classes of both the Courses Screen and the Lesson Screen to ensure that the business logic is functioning correctly and that data flows as expected between the Model and View.
+
 ## Bonus Features
 ### 1. Filtering and Searching by Categories
 Users can easily search for specific courses using the Search EditText on the Courses Screen by typing a desired keyword to filter the course list. Additionally, a Filter Button next to the search bar allows users to filter courses based on selected categories.
