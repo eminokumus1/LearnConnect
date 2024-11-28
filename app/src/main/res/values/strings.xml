@@ -27,6 +27,7 @@
     <string name="lessons">Lessons</string>
     <string name="lesson">Lesson</string>
     <string name="lesson_1">Lesson 1</string>
+    <string name="sign_out">Sign Out</string>
 
     <string-array name="filter_options">
         <item>Mobile App Development</item>
