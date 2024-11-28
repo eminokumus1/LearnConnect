@@ -13,9 +13,12 @@ import androidx.navigation.fragment.navArgs
 import com.eminokumus.learnconnect.databinding.FragmentLessonsBinding
 import com.eminokumus.learnconnect.main.MainActivity
 import com.eminokumus.learnconnect.utils.myApplication
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -58,7 +61,7 @@ class LessonsFragment : Fragment() {
         lessonsAdapter = LessonsAdapter().also {
             it.onLessonItemClickListener = object : OnLessonItemClickListener {
                 override fun onItemClick(lessonVideoUrl: String, lessonName: String) {
-                    saveLessonPosition(player.currentPosition)
+                    viewModel.saveLessonVideoPosition(getLessonPositionKey(), player.currentPosition)
                     changeLessonText(lessonName)
                     viewModel.setCurrentLessonIndexWith(lessonVideoUrl)
                     viewModel.setCurrentLessonVideoUrl(lessonVideoUrl)
@@ -80,6 +83,10 @@ class LessonsFragment : Fragment() {
         player = ExoPlayer.Builder(requireContext()).build()
         binding.lessonPlayer.player = player
 
+        binding.lessonPlayer.setOnClickListener {
+            viewModel.saveLessonVideoPosition(getLessonPositionKey(), player.currentPosition)
+        }
+
 
     }
 
@@ -87,7 +94,8 @@ class LessonsFragment : Fragment() {
         super.onStop()
         player.playWhenReady = false
         player.stop()
-        saveLessonPosition(player.currentPosition)
+        viewModel.saveLessonVideoPosition(getLessonPositionKey(), player.currentPosition)
+
     }
 
     override fun onResume() {
@@ -99,7 +107,6 @@ class LessonsFragment : Fragment() {
     private fun observeViewModel() {
         observeLessonVideosList()
         observeCurrentLessonVideoUrl()
-//        observeCurrentLessonPosition()
     }
 
     private fun observeLessonVideosList() {
@@ -121,17 +128,12 @@ class LessonsFragment : Fragment() {
     }
 
 
-
-
-    private fun saveLessonPosition(currentPosition: Long) {
-        val lessonPositionKey = StringBuilder()
+    private fun getLessonPositionKey(): String{
+        return StringBuilder()
             .append(userId)
             .append(course.id)
             .append(viewModel.getCurrentLessonIndex())
             .toString()
-        lifecycleScope.launch {
-            viewModel.saveLessonVideoPosition(lessonPositionKey, currentPosition)
-        }
     }
 
 

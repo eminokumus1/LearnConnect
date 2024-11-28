@@ -3,7 +3,11 @@ package com.eminokumus.learnconnect.lessons
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class LessonsViewModel @Inject constructor(
@@ -37,12 +41,14 @@ class LessonsViewModel @Inject constructor(
         return currentLessonIndex
     }
 
-    fun setCurrentLessonIndexWith(videoUrl: String){
+    fun setCurrentLessonIndexWith(videoUrl: String) {
         currentLessonIndex = lessonVideosList.value!!.indexOf(videoUrl)
     }
 
-    suspend fun saveLessonVideoPosition(lessonPositionKey: String, currentPosition: Long) {
-        repository.saveLessonPosition(lessonPositionKey, currentPosition)
+    fun saveLessonVideoPosition(lessonPositionKey: String, currentPosition: Long) {
+        viewModelScope.launch(Dispatchers.IO + NonCancellable) {
+            repository.saveLessonPosition(lessonPositionKey, currentPosition)
+        }
     }
 
     suspend fun getLessonVideoPosition(lessonPositionKey: String): Flow<Long?> {
