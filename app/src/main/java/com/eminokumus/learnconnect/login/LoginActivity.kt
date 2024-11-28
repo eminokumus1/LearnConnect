@@ -4,9 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
@@ -16,25 +15,29 @@ import com.eminokumus.learnconnect.MyApplication
 import com.eminokumus.learnconnect.ThemeModes
 import com.eminokumus.learnconnect.databinding.ActivityLoginBinding
 import com.eminokumus.learnconnect.signup.SignupActivity
+import com.eminokumus.learnconnect.utils.myApplication
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var viewModel: LoginViewModel
+
+    @Inject
+    lateinit var viewModel: LoginViewModel
 
     private lateinit var auth: FirebaseAuth
 
-    private val handler = Handler(Looper.getMainLooper())
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        this.myApplication().appComponent.inject(this)
+
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = LoginViewModel()
         checkThemeSwitchIfInLightMode()
 
         auth = Firebase.auth
@@ -121,19 +124,21 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkFirebaseAuthentication() {
+        showProgressBar()
         auth.signInWithEmailAndPassword(
             binding.emailEditText.text.toString(),
             binding.passwordEditText.text.toString()
         ).addOnCompleteListener {
             if (it.isSuccessful){
-                Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
-                handler.postDelayed({
+
+                    hideProgressBar()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
-                }, 1000)
+
 
             }else{
+                hideProgressBar()
                 Toast.makeText(this, "Wrong email or password", Toast.LENGTH_SHORT).show()
                 Log.e("error", it.exception.toString())
             }
@@ -178,6 +183,17 @@ class LoginActivity : AppCompatActivity() {
             binding.themeModeSwitch.isChecked = false
         }
     }
+
+    private fun showProgressBar(){
+        binding.loginProgressBar.visibility = View.VISIBLE
+        binding.dimView.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar(){
+        binding.loginProgressBar.visibility = View.GONE
+        binding.dimView.visibility = View.GONE
+    }
+
 
 
 }

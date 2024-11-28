@@ -5,6 +5,7 @@
     <color name="dark_grey">#505050</color>
     <color name="grey">#BBBBBB</color>
     <color name="light_grey">#D8D7D7</color>
+    <color name="dim_grey">#4DB4B1B1</color>
 
     <color name="light_red">#FFD5D2</color>
     <color name="red">#AE2E24</color>
