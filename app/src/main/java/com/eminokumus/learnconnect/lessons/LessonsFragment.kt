@@ -13,12 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.eminokumus.learnconnect.databinding.FragmentLessonsBinding
 import com.eminokumus.learnconnect.main.MainActivity
 import com.eminokumus.learnconnect.utils.myApplication
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.NonCancellable
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
